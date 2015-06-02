@@ -1,0 +1,11 @@
+#!/bin/sh
+NAME=$1
+git clone https://github.com/ledyba/Everything_as_a_Service.git
+mv Everything_as_a_Service $1 
+cd $1/src/tw
+BEFORE='c+" as a Service"'
+AFTER="c+ \"$2\""
+sed -i -e "s/$BEFORE/$AFTER/" ./main.go
+git checkout -b "$NAME"
+git add ./main.go
+git commit -m  "sed -i -e \"s/$BEFORE/$AFTER/\" main.go"
